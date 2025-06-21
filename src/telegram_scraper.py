@@ -69,7 +69,7 @@ async def main():
     for channel in channels:
         try:
             entity = await client.get_entity(channel)
-            async for message in client.iter_messages(entity, limit=100):
+            async for message in client.iter_messages(entity, limit=1000):
                 if message.text or message.media:
                     processed_data = preprocess_message(message)
                     save_to_csv(processed_data)
