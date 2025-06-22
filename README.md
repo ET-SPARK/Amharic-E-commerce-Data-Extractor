@@ -10,7 +10,7 @@ Transform messy Telegram posts into a smart FinTech engine that reveals which ve
 
 ### 🔍 Methodology
 
-- Extract messages from Telegram channels using the Telethon library.
+- Extract messages from selected Telegram channels using the Telethon library.
 - Normalize Amharic text (remove unwanted characters, extra spaces, and normalize Unicode).
 - Handle media (photos, documents) and prepare file paths for future downloads.
 - Save structured message data into a CSV file (`data/preprocessed_data.csv`).
