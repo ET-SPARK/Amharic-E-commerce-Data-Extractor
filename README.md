@@ -37,6 +37,19 @@ Transform messy Telegram posts into a smart FinTech engine that reveals which ve
 
 ---
 
+## ✅ Task 3: Fine-Tune NER Model
+
+### ✍️ Description
+
+- Loaded the manually labeled dataset in CoNLL format (`data/conll_raw_sample.txt`).
+- Used the `rasyosef/bert-tiny-amharic` pretrained model with Hugging Face's Transformers.
+- Tokenized messages with label alignment to subwords.
+- Fine-tuned the model for product, price, and location entity recognition using the Trainer API.
+- Evaluated model performance with standard NER metrics.
+- Saved the fine-tuned model for future inference and deployment.
+
+---
+
 ## 📁 File Structure
 
 ## File Structure
@@ -49,7 +62,7 @@ project/
 │ ├── telegram_scraper.py
 │ ├── conll_preprocessor.py
 ├── notebook/
-│ ├──
+│ ├── Fine_Tune_NER_Model_on_Amharic_Telegram_Data.ipynb
 ├── requirements.txt
 ├── .env
 ├── .gitignore
