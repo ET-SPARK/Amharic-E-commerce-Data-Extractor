@@ -95,18 +95,18 @@ Transform raw Telegram posts into a powerful FinTech engine capable of identifyi
 | ------------- | --------- | ------- | --------- | --------- |
 | LOC           | 1.53%     | 100%    | 3.01%     | 2         |
 | Product       | 0%        | 0%      | 0%        | 8         |
-| **Micro avg** | **1.53%** | **20%** | **2.84%** | —         |
+| **Micro avg** | **1.53%** | **20%** | **2.84%** | -         |
 
 #### Difficult Cases
 
 - 8 instances had incorrect predictions.
-- Example: a product description ("Workout Body Trimmer ...") was misclassified as `B-LOC` for all tokens, revealing confusion between entity types.
+- Example: A product description ("Workout Body Trimmer ...") was misclassified as `B-LOC` for all tokens, revealing confusion between entity types.
 
-#### 📌 Recommendations
+#### Recommendations
 
-- Collect more diverse and representative **location** data.
+- Collect more diverse and representative \*\*location` data.
 - Improve tokenization, especially for multi-word entities.
-- Augment training data with **synthetic Amharic NER** examples.
+- Augment training data with **synthetic Amharic NER data**.
 - Experiment with:
   - Higher learning rates (e.g., `5e-5`).
   - More epochs (e.g., `5+`).
@@ -115,7 +115,9 @@ Transform raw Telegram posts into a powerful FinTech engine capable of identifyi
 
 - Interpretability results saved in `amharic_ner_interpretability_report.md`.
 - Report includes:
+  - Data source
   - Model summary
+  - Details and configurations
   - SHAP/LIME status
   - Performance metrics
   - Error analysis
@@ -123,9 +125,49 @@ Transform raw Telegram posts into a powerful FinTech engine capable of identifyi
 
 ---
 
-## 📁 File Structure
+## ✅ Task 6: FinTech Vendor Scorecard for Micro-Lending
 
-## File Structure
+### 🔍 Methodology
+
+- Processed Telegram posts from `preprocessed_data.csv` using the fine-tuned `xlm-roberta-base` NER model to extract products and prices.
+- Calculated vendor metrics:
+  - **Posting Frequency**: Average posts per week based on timestamps.
+  - **Average Price Point**: Mean price of extracted products.
+  - **Lending Score**: Weighted score for micro-lending potential.
+- Used regex fallback for price extraction due to poor NER performance.
+- Handled missing `views` data by selecting the most recent post instead of the highest-viewed.
+
+### ✍️ Description
+
+- **Posting Frequency**: Computed as total posts divided by weeks spanned by timestamps (e.g., 28 posts/week for `ZemenExpress` over a 1-day subset).
+- **Average Views per Post**: Not calculated due to missing `views` column in `preprocessed_data.csv`.
+- **Top Performing Post**: Selected the most recent post due to unavailable view data. Extracted product and price (e.g., "3pcs Bottle Stopper", 400 Birr).
+- **Average Price Point**: Averaged extracted prices (e.g., 400 Birr for `ZemenExpress`).
+- **Lending Score**: Weighted score (60% frequency, 40% price) normalized with max values (frequency: 10 posts/week, price: 5,000 Birr), e.g., 28.8/100 for `ZemenExpress`.
+- **Limitations**:
+  - Missing `views` prevented view-based metrics.
+  - NER model’s 0% F1 for `Product` and 3.01% F1 for `LOC` led to unreliable entity extraction, mitigated by regex for prices.
+  - Small timestamp range (1 day) inflated frequency.
+
+#### Recommendations
+
+- Re-scrape Telegram data to include `views` and captions for image-only posts.
+- Improve NER model with more labeled data for `Product` and `LOC`.
+- Validate timestamps to ensure accurate frequency calculations.
+- Collect additional engagement metrics (e.g., replies) via Telethon.
+
+### 📄 Output
+
+- Scorecard report saved as `vendor_scorecard.md`.
+- Report includes:
+  - Overview and data source.
+  - Vendor metrics (frequency, price, Lending Score).
+  - Notes on data and NER limitations.
+  - Recommendations for improvement.
+
+---
+
+## 📁 File Structure
 
 project/
 ├── data/
