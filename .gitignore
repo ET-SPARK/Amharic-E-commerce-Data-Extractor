@@ -6,3 +6,4 @@ data/*.csv
 *.log
 venv/
 session_name.session
+scraping_session.session
